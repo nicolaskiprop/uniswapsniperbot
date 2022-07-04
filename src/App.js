@@ -1,60 +1,133 @@
 
 import './App.css';
-import { Box, Button, Divider, Grid, TextField, Typography } from '@mui/material';
+import { Box, Button, Card, CardContent, Container, Divider, Grid, Paper, TextField, Typography } from '@mui/material';
+import Appbar from '../src/components/Appbar'
+import { borderRadius } from '@mui/system';
 
 function App() {
   return (
-    <Grid container spacing={2} sx={{ padding: '20px' }}>
-      <Grid item xs={12} sm={6}>
-        <Box sx={{ border: '1px dashed grey', height: 'auto' }}>
-          <Box>
-            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-              <Typography sx={{ mt: 5, mb: 5 }}>BUY</Typography>
-            </Box>
-            <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center' }}>
-              <Typography>Amount In :</Typography>
-              <TextField size="small"></TextField>
-            </Box>
-            <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center' }}>
-              <Typography>Slippage :</Typography>
-              <TextField size="small"></TextField>
-            </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-              <Button variant='outlined'>
-                BUY
-              </Button>
-            </Box>
+    <>
+      <Appbar />
+      <Container maxWidth='xl'>
+      <Grid container spacing={2} sx={{ padding: '20px' }}>
+        <Grid item xs={12} sm={6}>
+          <Box sx={{ height: 'auto' }}>
+            <Card sx={{ minWidth: 275, backgroundColor:'aliceblue', borderRadius:'20px', marginBottom:'20px' }}>
+              <CardContent>
+                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                  <Typography sx={{ mt: 3, mb: 3, fontWeight:500 }}>BUY</Typography>
+                </Box>
+                <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', marginBottom: '30px' }} >
+                  <Typography>Amount In &nbsp; </Typography>
+                  <TextField size="small"></TextField>
+                </Box>
+                <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', marginBottom: '30px' }}>
+                  <Typography>Slippage &nbsp; </Typography>
+                  <TextField size="small"></TextField>
+                </Box>
+                <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: '30px' }}>
+                  <Button variant='contained' color='success'>
+                    BUY
+                  </Button>
+                </Box>
+              </CardContent>
+            </Card>
+            <Card sx={{ backgroundColor:'aliceblue', borderRadius:'20px', marginBottom:'20px'}}>
+              <CardContent>
+                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                  <Typography sx={{ mt: 3, mb: 3 }}>APPROVE</Typography>
+                </Box>
+
+                <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', marginBottom: '30px' }}>
+                  <Typography> Token Address &nbsp;</Typography>
+                  <TextField size="small"></TextField>
+                </Box>
+
+                <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: '30px' }}>
+                  <Button variant='contained' color='success'>
+                    Approve
+                  </Button>
+                </Box>
+              </CardContent>
+            </Card>
+
+            <Card sx={{ backgroundColor:'aliceblue', borderRadius:'20px', marginBottom:'20px'}}>
+              <CardContent>
+                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                  <Typography sx={{ mt: 3, mb: 3 }}>SELL</Typography>
+                </Box>
+
+                <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', marginBottom: '30px' }}>
+                  <Typography> Token Address &nbsp;&nbsp;&nbsp;</Typography>
+                  <TextField size="small"></TextField>
+                </Box>
+                <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', marginBottom: '30px' }}>
+                  <Typography> Amount to sell(%) &nbsp;</Typography>
+                  <TextField size="small"></TextField>
+                </Box>
+                <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', marginBottom: '30px' }}>
+                  <Typography>Gas  &nbsp;&nbsp; &nbsp;</Typography>
+                  <TextField size="small"></TextField>
+                </Box>
+
+                <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: '30px' }}>
+                  <Button variant='contained' color='success'>
+                    SELL
+                  </Button>
+                </Box>
+              </CardContent>
+            </Card>
           </Box>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <Box sx={{height: '76vh' }}>
+            <Card sx={{ backgroundColor:'aliceblue', borderRadius:'20px', marginBottom:'20px'}}>
+              <CardContent>
+                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                  <Typography sx={{ mt: 3, mb: 3 }}>SNIPE</Typography>
+                </Box>
+                <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', marginBottom: '30px' }} >
+                  <Typography>Token Address &nbsp; </Typography>
+                  <TextField size="small"></TextField>
+                </Box>
+                <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', marginBottom: '30px' }} >
+                  <Typography>Buy Amount (eth) &nbsp; </Typography>
+                  <TextField size="small"></TextField>
+                </Box>
+                <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: '30px' }}>
+                  <Button variant='contained' color='success'>
+                    SNIPE
+                  </Button>
+                </Box>
+              </CardContent>
+            </Card>
+            <Card sx={{ backgroundColor:'aliceblue', borderRadius:'20px', marginBottom:'20px'}}>
+              <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                <Typography sx={{ mt: 5, mb: 5 }}>LOGS</Typography>
+              </Box>
+              <Box sx={{ display: 'flex', justifyContent: 'center', }}>
 
-          <Divider />
-          <Box>
-            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-              <Typography sx={{ mt: 5, mb: 5 }}>SELL</Typography>
-            </Box>
+                <TextField
+                  type='text'
+                  defaultValue='https://etherscan.io/ ' 
+                  
+                  variant='outlined'
+                  inputProps={
+                    {
+                      readOnly: true,
+                      style: { cursor: 'pointer' }
+                    }
+                  }
+                  sx={{ width: '90%', height: 'auto' }}
 
-            <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center' }}>
-              <Typography>Amount In :</Typography>
-              <TextField size="small"></TextField>
-            </Box>
-            <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center' }}>
-              <Typography>Slippage :</Typography>
-              <TextField size="small"></TextField>
-            </Box>
-
-            <Box sx={{ display: 'flex', justifyContent: 'center', }}>
-              <Button variant='outlined'>
-                BUY
-              </Button>
-            </Box>
+                />
+              </Box>
+            </Card>
           </Box>
-        </Box>
+        </Grid>
       </Grid>
-      <Grid item xs={12} sm={6}>
-        <Box sx={{ border: '1px dashed grey', height: 'auto' }}>
-
-        </Box>
-      </Grid>
-    </Grid>
+      </Container>
+    </>
   );
 }
 
