@@ -12,6 +12,8 @@ function App() {
   const [slippage, setslippage] = useState('');
 
 
+  const [logs, setLogs] = useState('');
+
 
 
   const [data, setData] = useState({
@@ -20,7 +22,7 @@ function App() {
     slippage: ''
   })
 
-  const baseUrl = `http://127.0.0.1:5000`;
+  const baseUrl = `http://127.0.0.1:5000/buy`;
 
   function handle(e) {
     console.log(data);
@@ -43,6 +45,15 @@ function App() {
       slippage: parseInt(data.slippage)
     }).then(async (res) => {
       console.log(res.data);
+      const {
+        token,
+        buyAmount,
+        slippage
+    } = res.data.data
+    let log = `\ntokenAdress: ${token}`;
+    log += `\nbnbAmount: ${buyAmount}`;
+    log += `\nslippage: ${slippage}`;
+    setLogs(log);
     })
 
   }
@@ -158,9 +169,10 @@ function App() {
                   <Box sx={{ display: 'flex', justifyContent: 'center', mb: 5 }}>
 
                     <TextField
+                      label='logs'
                       multiline
                       maxRows={10}
-                      defaultValue="https://etherscan.io/ https://etherscan.io/"
+                      defaultValue={logs}
                       inputProps={{ readOnly: true }}
                       sx={{ width: '90%', cursor: 'pointer', background: 'white' }}
                     />
