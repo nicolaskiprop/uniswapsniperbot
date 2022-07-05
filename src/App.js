@@ -10,19 +10,25 @@ function App() {
   const [token, setToken] = useState('');
   const [buyAmount, setbuyAmount] = useState('');
   const [slippage, setslippage] = useState('');
-
-
+  const [tokenAddress, setTokenAddress] = useState('');
+  const [percentSell, setPercentSell] = useState('');
   const [logs, setLogs] = useState('');
+  const [gas, setGas] = useState('');
+  const [tokenAddress1, setTokenAddress1] = useState('');
 
 
 
   const [data, setData] = useState({
     token: '',
     buyAmount: '',
-    slippage: ''
+    slippage: '',
+    tokentosell: '',
+    tokenAddress: '',
+    percentSell: '',
+    gas: ''
   })
 
-  const baseUrl = `http://127.0.0.1:5000/buy`;
+  const baseUrl = `http://127.0.0.1:5000`;
 
   function handle(e) {
     console.log(data);
@@ -31,29 +37,97 @@ function App() {
     setData(newData);
     console.log(newData);
   }
+
+
   function handleSubmit(e) {
     e.preventDefault();
     console.log(data);
     setData({
       token: data.token,
       buyAmount: parseInt(data.buyAmount),
-      slippage: parseInt(data.slippage)
+      slippage: parseInt(data.slippage),
+
     });
-    axios.post(baseUrl, {
+
+
+
+    axios.post(`${baseUrl}/buy`, {
       token: data.token,
       buyAmount: parseInt(data.buyAmount),
-      slippage: parseInt(data.slippage)
+      slippage: parseInt(data.slippage),
+
     }).then(async (res) => {
       console.log(res.data);
       const {
         token,
         buyAmount,
-        slippage
-    } = res.data.data
-    let log = `\ntokenAdress: ${token}`;
-    log += `\nbnbAmount: ${buyAmount}`;
-    log += `\nslippage: ${slippage}`;
-    setLogs(log);
+        slippage,
+
+      } = res.data.data
+      let log = `\ntokenAdress: ${token}`;
+      log += `\nbnbAmount: ${buyAmount}`;
+      log += `\nslippage: ${slippage}`;
+
+      setLogs(log);
+    })
+
+  }
+
+  function handleApprove(e) {
+    e.preventDefault();
+    console.log(data);
+    setData({
+      tokenAddress1: data.tokenAddress1
+    });
+
+
+
+    axios.post(`${baseUrl}/approve`, {
+      tokenAddress1: data.tokenAddress1
+
+    }).then(async (res) => {
+      console.log(res.data);
+      const {
+        tokenAddress1, 
+
+      } = res.data.data
+      let log = `\ntokenAdress: ${tokenAddress1}`;
+
+
+      setLogs(log);
+    })
+
+  }
+  function handleSell(e) {
+    e.preventDefault();
+    console.log(data);
+    setData({
+      tokentosell: data.tokentosell,
+      percentSell: parseInt(data.percentSell),
+      gas: parseInt(data.gas),
+
+    });
+
+
+
+    axios.post(`${baseUrl}/sell`, {
+      tokentosell: data.tokentosell,
+      percentSell: parseInt(data.percentSell),
+      gas: parseInt(data.gas),
+
+    }).then(async (res) => {
+      console.log(res.data);
+      const {
+        tokentosell,
+        percentSell,
+        gas,
+
+      } = res.data.data
+      let log = `\ntoken_Adress: ${tokentosell}`;
+      log += `\nAmount_to_sell: ${percentSell}`;
+      log += `\nGas: ${gas}`;
+
+      setLogs(log);
     })
 
   }
@@ -61,13 +135,13 @@ function App() {
     <>
       <Appbar />
       <Container maxWidth='xl'>
-        <Grid container spacing={2} sx={{ padding: '20px' }} onChange={(e) => handle(e)}>
+        <Grid container spacing={2} sx={{ padding: '20px' }}  >
 
           <Grid item xs={12} sm={6}>
-            <form onSubmit={(e) => handleSubmit(e)}>
-              <Box sx={{ height: 'auto' }}>
 
-                <Card sx={{ minWidth: 275, backgroundColor: 'aliceblue', borderRadius: '20px', marginBottom: '20px' }}>
+            <Box sx={{ height: 'auto' }}>
+              <form onSubmit={(e) => handleSubmit(e)}>
+                <Card sx={{ minWidth: 275, backgroundColor: 'aliceblue', borderRadius: '20px', marginBottom: '20px' }} onChange={(e) => handle(e)} >
                   <CardContent>
                     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                       <Typography sx={{ mt: 3, mb: 3, fontWeight: 500 }}>BUY</Typography>
@@ -91,7 +165,9 @@ function App() {
                     </Box>
                   </CardContent>
                 </Card>
-                <Card sx={{ backgroundColor: 'aliceblue', borderRadius: '20px', marginBottom: '20px' }}>
+              </form>
+              <form onSubmit={(e) => handleApprove(e)}>
+                <Card sx={{ backgroundColor: 'aliceblue', borderRadius: '20px', marginBottom: '20px' }} onChange={(e) => handle(e)}>
                   <CardContent>
                     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                       <Typography sx={{ mt: 3, mb: 3 }}>APPROVE</Typography>
@@ -99,18 +175,19 @@ function App() {
 
                     <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', marginBottom: '30px' }}>
                       <Typography> Token Address &nbsp;</Typography>
-                      <TextField size="small" sx={{ background: "white" }}></TextField>
+                      <TextField size="small" sx={{ background: "white" }} id='tokenAddress1' value={tokenAddress1} onChange={(e) => setTokenAddress1(e.target.value)}></TextField>
                     </Box>
 
                     <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: '30px' }}>
-                      <Button variant='contained' color='success'>
+                      <Button variant='contained' color='success' type='submit'>
                         Approve
                       </Button>
                     </Box>
                   </CardContent>
                 </Card>
-
-                <Card sx={{ backgroundColor: 'aliceblue', borderRadius: '20px', marginBottom: '20px' }}>
+              </form>
+              <form onSubmit={(e) => handleSell(e)}>
+                <Card sx={{ backgroundColor: 'aliceblue', borderRadius: '20px', marginBottom: '20px' }} onChange={(e) => handle(e)}>
                   <CardContent>
                     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                       <Typography sx={{ mt: 3, mb: 3 }}>SELL</Typography>
@@ -118,26 +195,27 @@ function App() {
 
                     <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', marginBottom: '30px' }}>
                       <Typography> Token Address &nbsp;&nbsp;&nbsp;</Typography>
-                      <TextField size="small" sx={{ background: "white" }}></TextField>
+                      <TextField size="small" sx={{ background: "white" }} id='tokenAddress' value={tokenAddress} onChange={(e) => setTokenAddress(e.target.value)}></TextField>
                     </Box>
                     <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', marginBottom: '30px' }}>
                       <Typography> Amount to sell(%) &nbsp;</Typography>
-                      <TextField size="small" sx={{ background: "white" }}></TextField>
+                      <TextField size="small" sx={{ background: "white" }} id='percentSell' value={percentSell} onChange={(e) => setPercentSell(e.target.value)}></TextField>
                     </Box>
                     <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', marginBottom: '30px' }}>
                       <Typography>Gas  &nbsp;&nbsp; &nbsp;</Typography>
-                      <TextField size="small" sx={{ background: "white" }}></TextField>
+                      <TextField size="small" sx={{ background: "white" }} id='gas' value={gas} onChange={(e) => setGas(e.target.value)}></TextField>
                     </Box>
 
                     <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: '30px' }}>
-                      <Button  variant='contained' color='success' >
+                      <Button variant='contained' color='success' type='submit'>
                         SELL
                       </Button>
                     </Box>
                   </CardContent>
                 </Card>
-              </Box>
-            </form>
+              </form>
+            </Box>
+
           </Grid>
           <Grid item xs={12} sm={6}>
             <form>
