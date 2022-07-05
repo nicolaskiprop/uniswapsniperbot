@@ -15,6 +15,9 @@ function App() {
   const [logs, setLogs] = useState('');
   const [gas, setGas] = useState('');
   const [tokenAddress1, setTokenAddress1] = useState('');
+  const [tokenAddress2, setTokenAddress2] = useState('');
+  const [amount, setAmount] = useState('');
+
 
 
 
@@ -25,7 +28,8 @@ function App() {
     tokentosell: '',
     tokenAddress: '',
     percentSell: '',
-    gas: ''
+    gas: '',
+    amount:'',
   })
 
   const baseUrl = `http://127.0.0.1:5000`;
@@ -131,6 +135,39 @@ function App() {
     })
 
   }
+  function handleSnipe(e) {
+    e.preventDefault();
+    console.log(data);
+    console.log("Amount ", amount);
+    setData({
+      tokenAddress2: data.tokenAddress2,
+      amount: parseInt(data.amount),
+     
+
+    });
+
+
+
+    axios.post(`${baseUrl}/snipe`, {
+      tokenAddress2: tokenAddress2,
+      amount: parseInt(amount),
+      
+
+    }).then(async (res) => {
+      console.log(res.data);
+      const {
+        tokenAddress2,
+        amount
+
+      } = res.data.data
+      let log = `\ntoken_Adress: ${tokenAddress2}`;
+      log += `\nAmount_to_sell: ${amount}`;
+   ;
+
+      setLogs(log);
+    })
+
+  }
   return (
     <>
       <Appbar />
@@ -218,23 +255,23 @@ function App() {
 
           </Grid>
           <Grid item xs={12} sm={6}>
-            <form>
+            <form onSubmit={(e) => handleSnipe(e)}> 
               <Box sx={{ height: '76vh' }}>
-                <Card sx={{ backgroundColor: 'aliceblue', borderRadius: '20px', marginBottom: '20px' }}>
+                <Card sx={{ backgroundColor: 'aliceblue', borderRadius: '20px', marginBottom: '20px' }}  onChange={(e) => handle(e)}>
                   <CardContent>
                     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                       <Typography sx={{ mt: 3, mb: 3 }}>SNIPE</Typography>
                     </Box>
                     <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', marginBottom: '30px' }} >
                       <Typography>Token Address &nbsp; </Typography>
-                      <TextField size="small" sx={{ background: "white" }}></TextField>
+                      <TextField size="small" sx={{ background: "white" }} id='tokenAddress2' value={tokenAddress2} onChange={(e) => setTokenAddress2(e.target.value)}></TextField>
                     </Box>
                     <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', marginBottom: '30px' }} >
                       <Typography>Buy Amount (eth) &nbsp; </Typography>
-                      <TextField size="small" sx={{ background: "white" }}></TextField>
+                      <TextField size="small" sx={{ background: "white" }}id='amount' value={amount} onChange={(e) => setAmount(e.target.value)}></TextField>
                     </Box>
                     <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: '30px' }}>
-                      <Button variant='contained' color='success'>
+                      <Button variant='contained' color='success' type="submit">
                         SNIPE
                       </Button>
                     </Box>
