@@ -18,12 +18,16 @@ function App() {
                     <Typography sx={{ mt: 3, mb: 3, fontWeight: 500 }}>BUY</Typography>
                   </Box>
                   <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', marginBottom: '30px' }} >
-                    <Typography>Amount In &nbsp; </Typography>
-                    <TextField size="small"></TextField>
+                    <Typography>Token Address &nbsp; </Typography>
+                    <TextField size="small" sx={{background:"white"}}></TextField>
+                  </Box>
+                  <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', marginBottom: '30px' }}>
+                    <Typography>Amount to buy &nbsp; </Typography>
+                    <TextField size="small" sx={{background:"white"}}></TextField>
                   </Box>
                   <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', marginBottom: '30px' }}>
                     <Typography>Slippage &nbsp; </Typography>
-                    <TextField size="small"></TextField>
+                    <TextField size="small" sx={{background:"white"}}></TextField>
                   </Box>
                   <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: '30px' }}>
                     <Button variant='contained' color='success'>
@@ -40,7 +44,7 @@ function App() {
 
                   <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', marginBottom: '30px' }}>
                     <Typography> Token Address &nbsp;</Typography>
-                    <TextField size="small"></TextField>
+                    <TextField size="small" sx={{background:"white"}}></TextField>
                   </Box>
 
                   <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: '30px' }}>
@@ -59,15 +63,15 @@ function App() {
 
                   <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', marginBottom: '30px' }}>
                     <Typography> Token Address &nbsp;&nbsp;&nbsp;</Typography>
-                    <TextField size="small"></TextField>
+                    <TextField size="small" sx={{background:"white"}}></TextField>
                   </Box>
                   <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', marginBottom: '30px' }}>
                     <Typography> Amount to sell(%) &nbsp;</Typography>
-                    <TextField size="small"></TextField>
+                    <TextField size="small" sx={{background:"white"}}></TextField>
                   </Box>
                   <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', marginBottom: '30px' }}>
                     <Typography>Gas  &nbsp;&nbsp; &nbsp;</Typography>
-                    <TextField size="small"></TextField>
+                    <TextField size="small" sx={{background:"white"}}></TextField>
                   </Box>
 
                   <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: '30px' }}>
@@ -88,11 +92,11 @@ function App() {
                   </Box>
                   <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', marginBottom: '30px' }} >
                     <Typography>Token Address &nbsp; </Typography>
-                    <TextField size="small"></TextField>
+                    <TextField size="small" sx={{background:"white"}}></TextField>
                   </Box>
                   <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', marginBottom: '30px' }} >
                     <Typography>Buy Amount (eth) &nbsp; </Typography>
-                    <TextField size="small"></TextField>
+                    <TextField size="small" sx={{background:"white"}}></TextField>
                   </Box>
                   <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: '30px' }}>
                     <Button variant='contained' color='success'>
@@ -112,7 +116,7 @@ function App() {
                     maxRows={10}
                     defaultValue="https://etherscan.io/ https://etherscan.io/"
                     inputProps={{readOnly:true}}
-                    sx={{width:'90%', cursor:'pointer'}}
+                    sx={{width:'90%', cursor:'pointer', background:'white'}}
                   />
                 </Box>
               </Card>
