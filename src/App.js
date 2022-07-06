@@ -36,7 +36,7 @@ function App() {
 		amount: '',
 	});
 
-	const baseUrl = `http://127.0.0.1:3002`;
+	const baseUrl = `http://127.0.0.1:5000`;
 
 	function handle(e) {
 		console.log(data);
@@ -95,16 +95,16 @@ function App() {
 		e.preventDefault();
 		console.log(data);
 		setData({
-			tokenAddress: data.tokentosell,
-			percentSell: parseInt(data.percentSell),
-			gas: parseInt(data.gas),
+			tokenAddress: data.tokenAddress,
+			percentSell: parseFloat(data.percentSell),
+			gas: parseFloat(data.gas),
 		});
 
 		axios
 			.post(`${baseUrl}/sell`, {
-				tokenAddress: data.tokentosell,
-				percentSell: parseInt(data.percentSell),
-				gas: parseInt(data.gas),
+				tokenAddress: data.tokenAddress,
+				percentSell: parseFloat(data.percentSell),
+				gas: parseFloat(data.gas),
 			})
 			.then(async (res) => {
 				console.log(res.data);
@@ -403,6 +403,23 @@ function App() {
 												onChange={(e) => setAmount(e.target.value)}
 											></TextField>
 										</Box>
+                    <Box
+											sx={{
+												display: 'flex',
+												justifyContent: 'center',
+												alignItems: 'center',
+												marginBottom: '30px',
+											}}
+										>
+											<Typography>Profit Margin &nbsp; </Typography>
+											<TextField
+												size="small"
+												sx={{ background: 'white' }}
+												id="amount"
+												value={amount}
+												onChange={(e) => setAmount(e.target.value)}
+											></TextField>
+										</Box>
 										<Box
 											sx={{
 												display: 'flex',
@@ -434,11 +451,12 @@ function App() {
 											multiline
 											maxRows={10}
 											defaultValue={logs}
-											inputProps={{ readOnly: true }}
+											inputProps={{ readOnly: true , }}
 											sx={{
 												width: '90%',
 												cursor: 'pointer',
 												background: 'white',
+                        
 											}}
 										/>
 									</Box>
