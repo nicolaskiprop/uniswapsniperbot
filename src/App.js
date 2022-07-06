@@ -24,6 +24,7 @@ function App() {
 	const [tokenAddress1, setTokenAddress1] = useState('');
 	const [tokenAddress2, setTokenAddress2] = useState('');
 	const [amount, setAmount] = useState('');
+  const [profit, setProfit] = useState('');
 
 	const [data, setData] = useState({
 		token: '',
@@ -34,6 +35,7 @@ function App() {
 		percentSell: '',
 		gas: '',
 		amount: '',
+    profit:'',
 	});
 
 	const baseUrl = `http://127.0.0.1:5000`;
@@ -415,9 +417,9 @@ function App() {
 											<TextField
 												size="small"
 												sx={{ background: 'white' }}
-												id="amount"
-												value={amount}
-												onChange={(e) => setAmount(e.target.value)}
+												id="profit"
+												value={profit}
+												onChange={(e) => setProfit(e.target.value)}
 											></TextField>
 										</Box>
 										<Box
