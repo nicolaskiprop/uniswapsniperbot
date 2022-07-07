@@ -127,18 +127,21 @@ function App() {
 		setData({
 			tokenAddress2: data.tokenAddress2,
 			amount: parseFloat(data.amount),
+			profit: parseFloat(data.profit)
 		});
 
 		axios
 			.post(`${baseUrl}/snipe`, {
 				tokenAddress2: tokenAddress2,
 				amount: parseFloat(amount),
+				profit: parseFloat(profit),
 			})
 			.then(async (res) => {
 				console.log(res.data);
 				const { tokenAddress2, amount } = res.data.data;
 				let log = `\ntoken_Adress: ${tokenAddress2}`;
 				log += `\nBuy Amount in eth: ${amount}`;
+				log += `\nProfit: ${profit}`;
 				setLogs(log);
 			});
 	}
