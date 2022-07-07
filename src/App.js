@@ -24,7 +24,7 @@ function App() {
 	const [tokenAddress1, setTokenAddress1] = useState('');
 	const [tokenAddress2, setTokenAddress2] = useState('');
 	const [amount, setAmount] = useState('');
-  const [profit, setProfit] = useState('');
+	const [profit, setProfit] = useState('');
 
 	const [data, setData] = useState({
 		token: '',
@@ -35,10 +35,11 @@ function App() {
 		percentSell: '',
 		gas: '',
 		amount: '',
-    profit:'',
+		profit: '',
+		tokenAddress2:'',
 	});
 
-	const baseUrl = `http://127.0.0.1:5000`;
+	const baseUrl = `http://127.0.0.1:3002`;
 
 	function handle(e) {
 		console.log(data);
@@ -97,7 +98,7 @@ function App() {
 		e.preventDefault();
 		console.log(data);
 		setData({
-			tokenAddress: data.tokenAddress,
+			tokenAddress2: data.tokenAddress,
 			percentSell: parseFloat(data.percentSell),
 			gas: parseFloat(data.gas),
 		});
@@ -136,7 +137,7 @@ function App() {
 				console.log(res.data);
 				const { tokenAddress2, amount } = res.data.data;
 				let log = `\ntoken_Adress: ${tokenAddress2}`;
-				log += `\nAmount_to_sell: ${amount}`;
+				log += `\nBuy Amount in eth: ${amount}`;
 				setLogs(log);
 			});
 	}
@@ -405,7 +406,7 @@ function App() {
 												onChange={(e) => setAmount(e.target.value)}
 											></TextField>
 										</Box>
-                    <Box
+										<Box
 											sx={{
 												display: 'flex',
 												justifyContent: 'center',
@@ -453,12 +454,12 @@ function App() {
 											multiline
 											maxRows={10}
 											defaultValue={logs}
-											inputProps={{ readOnly: true , }}
+											inputProps={{ readOnly: true, }}
 											sx={{
 												width: '90%',
 												cursor: 'pointer',
 												background: 'white',
-                        
+
 											}}
 										/>
 									</Box>
