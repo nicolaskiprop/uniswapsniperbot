@@ -25,7 +25,7 @@ function App() {
 	const [tokenAddress2, setTokenAddress2] = useState('');
 	const [amount, setAmount] = useState('');
 	const [profit, setProfit] = useState('');
-
+	const [tokenAddress0, setTokenAddress0] = useState('');
 	const [data, setData] = useState({
 		token: '',
 		buyAmount: '',
@@ -36,7 +36,8 @@ function App() {
 		gas: '',
 		amount: '',
 		profit: '',
-		tokenAddress2:'',
+		tokenAddress2: '',
+		tokenAddress0:'',
 	});
 
 	const baseUrl = `http://127.0.0.1:3002`;
@@ -98,21 +99,21 @@ function App() {
 		e.preventDefault();
 		console.log(data);
 		setData({
-			tokenAddress2: data.tokenAddress,
+			tokenAddress0: data.tokenAddress0,
 			percentSell: parseFloat(data.percentSell),
 			gas: parseFloat(data.gas),
 		});
 
 		axios
 			.post(`${baseUrl}/sell`, {
-				tokenAddress: data.tokenAddress,
+				tokenAddress0: data.tokenAddress0,
 				percentSell: parseFloat(data.percentSell),
 				gas: parseFloat(data.gas),
 			})
 			.then(async (res) => {
 				console.log(res.data);
-				const { tokenAddress, percentSell, gas } = res.data.data;
-				let log = `\ntoken_Adress: ${tokenAddress}`;
+				const { tokenAddress0, percentSell, gas } = res.data.data;
+				let log = `\ntoken_Adress: ${tokenAddress0}`;
 				log += `\nAmount_to_sell: ${percentSell}`;
 				log += `\nGas: ${gas}`;
 
@@ -301,9 +302,9 @@ function App() {
 											<TextField
 												size="small"
 												sx={{ background: 'white' }}
-												id="tokenAddress"
-												value={tokenAddress}
-												onChange={(e) => setTokenAddress(e.target.value)}
+												id="tokenAddress0"
+												value={tokenAddress0}
+												onChange={(e) => setTokenAddress0(e.target.value)}
 											></TextField>
 										</Box>
 										<Box
