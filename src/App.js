@@ -69,7 +69,7 @@ function App() {
 				console.log(res.data);
 				const { token, buyAmount, slippage } = res.data.data;
 				let log = `\ntokenAdress: ${token}`;
-				log += `\nbnbAmount: ${buyAmount}`;
+				log += `\nbuyAmount: ${buyAmount}`;
 				log += `\nslippage: ${slippage}`;
 
 				setLogs(log);
@@ -90,7 +90,7 @@ function App() {
 			.then(async (res) => {
 				console.log(res.data);
 				const { tokenAddress1 } = res.data.data;
-				let log = `\ntokenAdress: ${tokenAddress1}`;
+				let log = `\ntokenAdress approved: ${tokenAddress1}`;
 
 				setLogs(log);
 			});
