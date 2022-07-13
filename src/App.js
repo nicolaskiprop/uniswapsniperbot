@@ -138,7 +138,7 @@ function App() {
 			})
 			.then(async (res) => {
 				console.log(res.data);
-				if (res.data.status == 'Fail') {
+				if (res.data.status === 'Fail') {
 					setLogs(res.data.data)
 				}
 				const { tokenAddress2, amount } = res.data.data;
