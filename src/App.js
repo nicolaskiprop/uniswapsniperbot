@@ -56,21 +56,21 @@ function App() {
 		setData({
 			token: data.token,
 			buyAmount: parseFloat(data.buyAmount),
-			
+			slippage: parseFloat(data.slippage),
 		});
 
 		axios
 			.post(`${baseUrl}/buy`, {
 				token: data.token,
 				buyAmount: parseFloat(data.buyAmount),
-				
+				slippage: parseFloat(data.slippage),
 			})
 			.then(async (res) => {
 				console.log(res.data);
 				const { token, buyAmount, slippage } = res.data.data;
 				let log = `\ntokenAdress: ${token}`;
 				log += `\nbuyAmount: ${buyAmount}`;
-				
+				log += `\nslippage: ${slippage}`;
 
 				setLogs(log);
 			});
@@ -101,21 +101,21 @@ function App() {
 		setData({
 			tokenAddress0: data.tokenAddress0,
 			percentSell: parseFloat(data.percentSell),
-			gas: parseFloat(data.gas),
+			slippage: parseFloat(data.slippage),
 		});
 
 		axios
 			.post(`${baseUrl}/sell`, {
 				tokenAddress0: data.tokenAddress0,
 				percentSell: parseFloat(data.percentSell),
-				gas: parseFloat(data.gas),
+				slippage: parseFloat(data.slippage),
 			})
 			.then(async (res) => {
 				console.log(res.data);
-				const { tokenAddress0, percentSell, gas } = res.data.data;
+				const { tokenAddress0, percentSell, slippage } = res.data.data;
 				let log = `\ntoken_Adress: ${tokenAddress0}`;
 				log += `\nAmount_to_sell: ${percentSell}`;
-				log += `\nGas: ${gas}`;
+				log += `\nSlippage: ${slippage}`;
 
 				setLogs(log);
 			});
@@ -202,7 +202,23 @@ function App() {
 												onChange={(e) => setbuyAmount(e.target.value)}
 											></TextField>
 										</Box>
-										
+										<Box
+											sx={{
+												display: 'flex',
+												justifyContent: 'center',
+												alignItems: 'center',
+												marginBottom: '30px',
+											}}
+										>
+											<Typography>Slippage &nbsp; </Typography>
+											<TextField
+												size="small"
+												sx={{ background: 'white' }}
+												id="slippage"
+												value={slippage}
+												onChange={(e) => setslippage(e.target.value)}
+											></TextField>
+										</Box>
 										<Box
 											sx={{
 												display: 'flex',
@@ -319,12 +335,12 @@ function App() {
 												marginBottom: '30px',
 											}}
 										>
-											<Typography>Slipage &nbsp;&nbsp; &nbsp;</Typography>
+											<Typography>Slippage &nbsp;&nbsp; &nbsp;</Typography>
 											<TextField
 												size="small"
 												sx={{ background: 'white' }}
-												id="gas"
-												value={gas}
+												id="slippage"
+												value={slippage}
 												onChange={(e) => setGas(e.target.value)}
 											></TextField>
 										</Box>
