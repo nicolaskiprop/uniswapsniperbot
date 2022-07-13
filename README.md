@@ -36,3 +36,37 @@ This is a simple user interface for  a uniswap sniper bot
 ## Built with
 - [MUI](https://www.mui.com/)
 - 
+
+
+### Prerequisites
+1. [NodeJS](https://nodejs.org/en/)
+2. [Visual Studio Code](https://code.visualstudio.com/)
+3. [Git](https://git-scm.com/downloads)
+
+
+### Installation
+### Cloning the project from github
+
+-  Clone the repository from github version control
+
+```sh
+git clone https://github.com/your_username_/Project-Name.git
+```
+ -  Install yarn packages and node modules
+```sh
+yarn install
+```
+
+### Usage
+
+Use the below commands to start or stop the bot
+
+1. Starting the snipper bot in the terminal
+```sh
+yarn start
+```
+2. Stop the Bot
+```sh
+ctrl + c
+```
+
