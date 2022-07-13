@@ -140,12 +140,14 @@ function App() {
 				console.log(res.data);
 				if (res.data.status === 'Fail') {
 					setLogs(res.data.data)
-				}
+				} else {
+				
 				const { tokenAddress2, amount } = res.data.data;
 				let log = `\ntoken_Adress: ${tokenAddress2}`;
 				log += `\nBuy Amount in eth: ${amount}`;
 				log += `\nProfit: ${profit}`;
 				setLogs(log);
+				}
 			});
 	}
 	return (
