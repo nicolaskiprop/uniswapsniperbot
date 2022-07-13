@@ -56,21 +56,21 @@ function App() {
 		setData({
 			token: data.token,
 			buyAmount: parseFloat(data.buyAmount),
-			slippage: parseFloat(data.slippage),
+			
 		});
 
 		axios
 			.post(`${baseUrl}/buy`, {
 				token: data.token,
 				buyAmount: parseFloat(data.buyAmount),
-				slippage: parseFloat(data.slippage),
+				
 			})
 			.then(async (res) => {
 				console.log(res.data);
 				const { token, buyAmount, slippage } = res.data.data;
 				let log = `\ntokenAdress: ${token}`;
 				log += `\nbuyAmount: ${buyAmount}`;
-				log += `\nslippage: ${slippage}`;
+				
 
 				setLogs(log);
 			});
@@ -202,23 +202,7 @@ function App() {
 												onChange={(e) => setbuyAmount(e.target.value)}
 											></TextField>
 										</Box>
-										<Box
-											sx={{
-												display: 'flex',
-												justifyContent: 'center',
-												alignItems: 'center',
-												marginBottom: '30px',
-											}}
-										>
-											<Typography>Slippage &nbsp; </Typography>
-											<TextField
-												size="small"
-												sx={{ background: 'white' }}
-												id="slippage"
-												value={slippage}
-												onChange={(e) => setslippage(e.target.value)}
-											></TextField>
-										</Box>
+										
 										<Box
 											sx={{
 												display: 'flex',
@@ -335,7 +319,7 @@ function App() {
 												marginBottom: '30px',
 											}}
 										>
-											<Typography>Gas &nbsp;&nbsp; &nbsp;</Typography>
+											<Typography>Slipage &nbsp;&nbsp; &nbsp;</Typography>
 											<TextField
 												size="small"
 												sx={{ background: 'white' }}
